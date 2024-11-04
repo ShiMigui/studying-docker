@@ -3,14 +3,14 @@
 ## Lifecycle
 In Docker, we can do some operations to control containers on our PC.
 
-### Pulling and running an image from docker hub
-To pull and run a container, we can use `docker run <name>`. If the container is not yet pulled to our PC, that command will pull the image(from Docker Hub) and run it. 
+### Running a container
+To pull and run a container, we can use `docker run <name>`. If the container is not yet pulled to our PC, that command will fetch the image(from Docker Hub) and run it. 
 
 | Attribute | Description                                                                   |
 | --------- | ----------------------------------------------------------------------------- |
 | -d        | Tells Docker to run container in background(detached mode).                   |
 | -p        | Maps a port on the host to a port in the container(e.g. `-p 80:80`).          |
-| --name    | Specifies a name for the container(if not provided, generates a random name). |
+| --name    | Specifies a name for the container(otherwise, generates a random name). |
 
 ### Listing existing containers
 To list existing containers, we can use `docker ps -a`, to show only containers that are running, we can use `docker ps`.
@@ -31,3 +31,6 @@ To remove a container, we can use `docker rm <id>`. If the container is running,
 - `-p 80:80`: Maps port **80** on host to port **80** on container.
 - `--name nginx_app`: Specifies container's name, making it easier to identify and manage.
 - `nginx`: Name of the image, this could be any available image on Docker Hub.
+
+## Building images
+To build a Docker Image, we can use `docker build <directory>` or (the more recent) `docker buildx build <directory>`. This will creates an image that can later be run with the [Docker Run Command](#running-a-container).
