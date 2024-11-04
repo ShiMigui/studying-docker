@@ -1,36 +1,37 @@
 # Docker
 
 ## Lifecycle
-In Docker, we can do some operations to control containers on our PC.
+In Docker, you can perform various operations to manage containers on your PC.
 
-### Running a container
-To pull and run a container, we can use `docker run <name>`. If the container is not yet pulled to our PC, that command will fetch the image(from Docker Hub) and run it. 
+### Fetch & Run Containers
+To pull and run a container, use `docker run <name>`. If the image is not already on your PC, this command will fetch it from Docker Hub and then [start the container](#start-container). Each time you run this command, it creates a new container from the specified image, unlike [docker start](#start-container), which only restarts an existing, stopped container.
 
-| Attribute | Description                                                                   |
-| --------- | ----------------------------------------------------------------------------- |
-| -d        | Tells Docker to run container in background(detached mode).                   |
-| -p        | Maps a port on the host to a port in the container(e.g. `-p 80:80`).          |
-| --name    | Specifies a name for the container(otherwise, generates a random name). |
+| Attribute | Description                                                                       |
+| --------- | --------------------------------------------------------------------------------- |
+| `-d`      | Runs the container in the background (detached mode).                             |
+| `-p`      | Maps a port on the host to a port in the container (e.g., `-p 80:80`).            |
+| `--name`  | Assigns a specific name to the container (otherwise, a random name is generated). |
+| `--rm`    | Automatically removes the container when it stops.                                |
 
-### Listing existing containers
-To list existing containers, we can use `docker ps -a`, to show only containers that are running, we can use `docker ps`.
+### List Containers
+To list all containers (running and stopped), use `docker ps -a`. To show only running containers, use `docker ps`.
 
-### Starting a container
-To start an existing container, we can use: `docker start <id>`.
+### Start Containers
+To start an existing container, use `docker start <id>`. You can also use flags like `docker start -it <id>`, which starts the container in interactive mode.
 
-### Stopping a container
-To stop an existing container, we can use: `docker stop <id_or_name>`
+### Stop Containers
+To stop a running container, use `docker stop <id_or_name>`.
 
-### Removing a container
-To remove a container, we can use `docker rm <id>`. If the container is running, we can force its removal with `docker rm -f <id>`.
+### Remove Containers
+To remove a container, use `docker rm <id>`. If the container is still running, you can force its removal with `docker rm -f <id>`.
+
+## Building Images
+To build a Docker image, use `docker build <directory>` or the more recent `docker buildx build <directory>`. This creates an image that can later be run with the [Docker Run Command](#fetch--run-containers).
 
 ## Examples
 ### `sudo docker run -d -p 80:80 --name nginx_app nginx`
-- `docker run`: This runs a container. If the image is already on our PC, it will use that; otherwise, it will pull the image from Docker Hub.
-- `-d`: Container will run in the background.
-- `-p 80:80`: Maps port **80** on host to port **80** on container.
-- `--name nginx_app`: Specifies container's name, making it easier to identify and manage.
-- `nginx`: Name of the image, this could be any available image on Docker Hub.
-
-## Building images
-To build a Docker Image, we can use `docker build <directory>` or (the more recent) `docker buildx build <directory>`. This will creates an image that can later be run with the [Docker Run Command](#running-a-container).
+- `docker run`: This command starts a container. If the image is already on your PC, it will use that; otherwise, it will pull the image from Docker Hub.
+- `-d`: Runs the container in the background.
+- `-p 80:80`: Maps port **80** on the host to port **80** in the container.
+- `--name nginx_app`: Assigns a name to the container, making it easier to identify and manage.
+- `nginx`: Specifies the image to use, which could be any available image on Docker Hub.
