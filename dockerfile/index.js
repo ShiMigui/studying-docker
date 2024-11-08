@@ -4,19 +4,9 @@ const fs = require('fs');
 const APP = express();
 const PORT = 3000;
 
-APP.get('/', (req, res) => {
-    const CACHE = path.join(__dirname, "cache");
-    const INDEX = path.join(CACHE, "index.html");
+APP.get('/', (req, res) => res.send("<h1>Hello world!</h1><a href='./duck'>Duck</a>"));
 
-    if(!fs.existsSync(INDEX)){
-        // Simulating a process with a delay
-        fs.mkdirSync(CACHE, { recursive: true });
-        setTimeout(() => {
-            fs.writeFileSync(INDEX, '<h1>Hello, World!</h1>', { encoding: "utf-8" });
-            res.sendFile(INDEX);
-        }, 3000);
-    }
-    else res.sendFile(INDEX);
-});
+const LINK = 'https://hips.hearstapps.com/hmg-prod/images/how-to-keep-ducks-call-ducks-1615457181.jpg';
+APP.get('/duck', (req, res) => res.send(`<img src='${LINK}' alt='A duck image'/><h1>I am a duck! Quack</h1><a href='../'>Home</a>`));
 
 APP.listen(PORT, () => console.log(`Listening on ${PORT}...`));
