@@ -16,3 +16,4 @@ The bridge network operates in a "sandbox" (an isolated and virtual environment)
 - `create`: Creates a network using `create <network_name>`. Optionally, add `-d <network_type>` to specify Host or Bridge.
 - `rm`: Removes a network using `rm <network_name_or_id>`.
 - `prune`: Clears unused networks using `prune`.
+- `connect`: Connects a container to a network using `connect <network_name> <container_id>`.
