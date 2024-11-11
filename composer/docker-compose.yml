@@ -4,11 +4,8 @@ services:
     volumes: 
       - mysql_data:/var/lib/mysql
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: wordpress
-      MYSQL_DATABASE: wordpress
-      MYSQL_PASSWORD: secret
-      MYSQL_USER: shimigui
+    env_file:
+      - ./config/db.env
 
   wordpress:
     depends_on:
@@ -17,11 +14,8 @@ services:
     ports:
       - 8000:80
     restart: always
-    environment:
-      WORDPRESS_DB_PASSWORD: secret
-      WORDPRESS_DB_HOST: mysql:3306
-      WORDPRESS_DB_NAME: wordpress
-      WORDPRESS_DB_USER: shimigui
+    env_file:
+      - ./config/wp.env
 
 volumes:
   mysql_data: {}
