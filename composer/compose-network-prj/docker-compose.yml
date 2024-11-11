@@ -1,0 +1,21 @@
+services:
+  python:
+    image: flask_api
+    restart: always
+    networks: [ application ]
+    env_file: [ "./config/py.env" ]
+    
+    depends_on: [ mysql ]
+    ports: [ 5000:5000 ]
+
+  mysql:
+    image: db_flask_api
+    restart: always
+    networks: [ application ]
+    env_file: [ "./config/db.env" ]
+    volumes: [ mysql_data:/var/lib/mysql ]
+
+volumes:
+  mysql_data: {}
+networks:
+  application:
