@@ -4,7 +4,7 @@ services:
     restart: always
     networks: [ application ]
     env_file: [ "./config/py.env" ]
-    
+    volumes: [ "./flask:/app" ]
     depends_on: [ mysql ]
     ports: [ 5000:5000 ]
 
