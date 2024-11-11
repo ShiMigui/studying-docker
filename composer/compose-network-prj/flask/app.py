@@ -1,4 +1,4 @@
-from config import app, debug, port, mysql
+from config import app, DEBUG, PORT, mysql
 from requests import get
 
 def random_user(): return get("https://randomuser.me/api").json()
@@ -18,4 +18,4 @@ def insert():
     cur.close()    
     return f"User {username} inserted successfully!", 201
     
-if __name__ == "__main__": app.run(host="0.0.0.0", debug=debug, port=port) 
+if __name__ == "__main__": app.run(host="0.0.0.0", debug=DEBUG, port=PORT) 

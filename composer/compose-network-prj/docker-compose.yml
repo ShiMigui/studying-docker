@@ -1,6 +1,6 @@
 services:
   python:
-    image: flask_api
+    build: ./flask/
     restart: always
     networks: [ application ]
     env_file: [ "./config/py.env" ]
@@ -9,7 +9,7 @@ services:
     ports: [ 5000:5000 ]
 
   mysql:
-    image: db_flask_api
+    build: ./mysql/
     restart: always
     networks: [ application ]
     env_file: [ "./config/db.env" ]
